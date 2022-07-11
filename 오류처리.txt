@@ -1,0 +1,5 @@
+# "AttributeError partially initialized module 'requests' has no 
+attribute 'get' (most likely due to a circular import)"
+==> 해결방법 : 참조오류이므로 requests모듈은 requests.py에서 불러오기 때문에 원래 있던 스크립트의 이름을 수정하면 됨 
+
+# 
