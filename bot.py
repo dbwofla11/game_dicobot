@@ -1,5 +1,11 @@
+from 내스크랩핑.my_bs4 import rank1 # 스크랩핑에서 rank가져오기 
+from 내스크랩핑.my_bs4 import rank2
+from 내스크랩핑.my_bs4 import rank3
+from 내스크랩핑.my_bs4 import rank4
+from 내스크랩핑.my_bs4 import rank5
+############################################################## 네이버 웹툰랭킹 가져오기 
 import pymysql
-from game_dicobot.pt import token
+from pt import token
 import discord , asyncio
 import random as r
 
@@ -54,7 +60,7 @@ async def on_message(message): # 채팅명령어
                await message.channel.send("!!!!!!!!!")
                await message.channel.send(set_member[0])
             else:
-                await message.channel.send("먼저 @게임참가 를 해주세요")
+                await message.channel.send("먼저 ;게임참가 를 해주세요")
     
 
     #학습하기 
@@ -96,11 +102,14 @@ async def on_message(message): # 채팅명령어
             await message.channel.send("참가도 안했는데 뭘 나가요.....")
 
 ########################################################################################
-### 학교관련 명령어 
-    #@학식/학교이름 
-
-    # 이건 사이트로 가는게 아니라 바로 뜨게끔 연구하기
-        
+### 스크랩핑 테스트 
+    if message.content == ";웹툰랭킹":
+        await message.channel.send(rank1.a.get_text())
+        await message.channel.send(rank2.a.get_text())
+        await message.channel.send(rank3.a.get_text())
+        await message.channel.send(rank4.a.get_text())
+        await message.channel.send(rank5.a.get_text())
+                  
 ########################################################################################
     #리스트 확인 
     if message.content == ";리스트확인":
