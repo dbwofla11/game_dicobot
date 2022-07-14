@@ -15,11 +15,15 @@ soup = BeautifulSoup(res.text , "lxml")
 # get_text()를 하게 되면 next_sibling을 사용못함 
 
 #1등 (네이버 웹툰랭킹 )
-rank1 = soup.find("li" , attrs={"class":"rank01"})
-# print(rank1.a.get_text()) 
-rank2 = rank1.find_next_sibling("li")
-# print(rank2.a.get_text())
-rank3 = rank2.find_next_sibling("li")
-rank4 = rank3.find_next_sibling("li")
-rank5 = rank4.find_next_sibling("li")
+def ranklist():
+    rank1 = soup.find("li" , attrs={"class":"rank01"}) 
+    # print(rank1.a.get_text()) 
+    rank2 = rank1.find_next_sibling("li")
+    # print(rank2.a.get_text())
+    rank3 = rank2.find_next_sibling("li")
+    rank4 = rank3.find_next_sibling("li")
+    rank5 = rank4.find_next_sibling("li")
+    return [rank1, rank2, rank3, rank4, rank5]
 
+    
+   
