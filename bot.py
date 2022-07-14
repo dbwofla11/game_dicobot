@@ -1,8 +1,4 @@
-from 내스크랩핑.my_bs4 import rank1 # 스크랩핑에서 rank가져오기 
-from 내스크랩핑.my_bs4 import rank2
-from 내스크랩핑.my_bs4 import rank3
-from 내스크랩핑.my_bs4 import rank4
-from 내스크랩핑.my_bs4 import rank5
+from 내스크랩핑.my_bs4 import ranklist
 ############################################################## 네이버 웹툰랭킹 가져오기 
 import pymysql
 from pt import token
@@ -104,11 +100,9 @@ async def on_message(message): # 채팅명령어
 ########################################################################################
 ### 스크랩핑 테스트 
     if message.content == ";웹툰랭킹":
-        await message.channel.send(rank1.a.get_text())
-        await message.channel.send(rank2.a.get_text())
-        await message.channel.send(rank3.a.get_text())
-        await message.channel.send(rank4.a.get_text())
-        await message.channel.send(rank5.a.get_text())
+        webtoons = ranklist()
+        for i in range(5):
+            await message.channel.send(webtoons[i].a.get_text())
                   
 ########################################################################################
     #리스트 확인 
