@@ -1,3 +1,4 @@
+from sqlalchemy import values
 from 내스크랩핑.my_bs4 import ranklist
 ############################################################## 네이버 웹툰랭킹 가져오기 
 import pymysql
@@ -6,9 +7,7 @@ import discord , asyncio
 import random as r
 
 client = discord.Client()
-
 member = [] # 게임하기 리스트 
-
 #학습하기는 딕션너리로 처리할거 
 #학습 아웃풋  # 수정 , 삭제 , 학습 , 읽기 (@학습하기 리스트 출력 )
 studydic = {}
@@ -33,13 +32,15 @@ async def on_message(message): # 채팅명령어
     #봇의 모든 명령어 출력     
     if message.content == (";명령어"):
         embed = discord.Embed(title= "명령어 모음")
+        embed.set_image(url="https://image.fmkorea.com/files/attach/new2/20210324/1378413927/1446197332/3475253609/11cc82efaea123c0001fec1bfcf95897.png")
         embed.add_field(name="컨텐츠용 명령어" , value= ";게임참가, ;게임나가기, ;러시안룰렛 " , inline=False)
-        embed.add_field(name="학교관련 명령어" , value= ";학식/학교이름(패치예정)" , inline=False)
+        embed.add_field(name="스크랩핑 연습" , value= ";웹툰랭킹" , inline=False)
         embed.add_field(name="학습하기 도움말" , value=";학습하기/내가 해줄 말/내가 들을 말 , ;학습하기수정/내가 해줄 말/내가 들을 말 , ;학습하기제거/내가 해줄 말 " , inline=False)
+        embed.set_footer(text="숭실대학교 키메라 모코코봇 ")
         await message.channel.send(embed=embed)
 
 ###################################################################################################
-    #러시안 롤렛
+    #러시안 롤렛  ;게임참가를 먼저 입력해야 작동이 됨 
     if message.content == ";러시안룰렛":
         set_member = set(member) #중복이 되면 안됨으로 Set형을 써서 리스트를 만듬 그걸가지고 롤렛을 돌리는 거임 
         set_member = list(set_member)
@@ -71,8 +72,8 @@ async def on_message(message): # 채팅명령어
             mslst = []
             await message.channel.send("단어장이 수정되었습니다.")
         else:
-            await message.channel.send("@학습하기 명령어에 오류가 있습니다 ")
-            await message.channel.send("@학습하기/내가 해줄 말/내가 들을 말 ")
+            await message.channel.send(";학습하기 명령어에 오류가 있습니다 ")
+            await message.channel.send(";학습하기/내가 해줄 말/내가 들을 말 ")
     elif len(mslst) == 2 :
         if mslst[0] == ";학습하기제거": # 학습하기 제거 
             studydic.pop(str(mslst[1]))
@@ -127,5 +128,4 @@ async def on_message(message): # 채팅명령어
 
 #실행 
 client.run(token)
-
 
