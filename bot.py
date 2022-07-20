@@ -1,5 +1,5 @@
-from sqlalchemy import values
-from 내스크랩핑.my_bs4 import ranklist
+from 내스크랩핑bs4.my_bs4 import ranklist
+from 내스크랩핑bs4.kakakoHOT import best_notice
 ############################################################## 네이버 웹툰랭킹 가져오기 
 import pymysql
 from pt import token
@@ -34,7 +34,7 @@ async def on_message(message): # 채팅명령어
         embed = discord.Embed(title= "명령어 모음")
         embed.set_image(url="https://image.fmkorea.com/files/attach/new2/20210324/1378413927/1446197332/3475253609/11cc82efaea123c0001fec1bfcf95897.png")
         embed.add_field(name="컨텐츠용 명령어" , value= ";게임참가, ;게임나가기, ;러시안룰렛 " , inline=False)
-        embed.add_field(name="스크랩핑 연습" , value= ";웹툰랭킹" , inline=False)
+        embed.add_field(name="스크랩핑 연습" , value= ";웹툰랭킹  , ;이슈" , inline=False)
         embed.add_field(name="학습하기 도움말" , value=";학습하기/내가 해줄 말/내가 들을 말 , ;학습하기수정/내가 해줄 말/내가 들을 말 , ;학습하기제거/내가 해줄 말 " , inline=False)
         embed.set_footer(text="숭실대학교 키메라 모코코봇 ")
         await message.channel.send(embed=embed)
@@ -104,6 +104,11 @@ async def on_message(message): # 채팅명령어
         webtoons = ranklist()
         for i in range(5):
             await message.channel.send(webtoons[i].a.get_text())
+
+    if message.content == ";이슈":
+        issue = best_notice()
+        for i in range(10):
+            await message.channel.send(issue[i].a.get_text() + issue[i].a["href"])
                   
 ########################################################################################
     #리스트 확인 
