@@ -33,10 +33,10 @@ async def on_message(message): # 채팅명령어
     if message.content == (";명령어"):
         embed = discord.Embed(title= "명령어 모음")
         embed.set_image(url="https://image.fmkorea.com/files/attach/new2/20210324/1378413927/1446197332/3475253609/11cc82efaea123c0001fec1bfcf95897.png")
-        embed.add_field(name="컨텐츠용 명령어" , value= ";게임참가, ;게임나가기, ;러시안룰렛 " , inline=False)
-        embed.add_field(name="스크랩핑 연습" , value= ";웹툰랭킹  , ;이슈" , inline=False)
+        embed.add_field(name="컨텐츠용 명령어" , value= ";게임참가, ;게임나가기, ;러시안룰렛  , ;웹툰랭킹" , inline=False)
+        embed.add_field(name="학교관련 명령어" , value= ";학교  , ;이슈 , ;" , inline=False)
         embed.add_field(name="학습하기 도움말" , value=";학습하기/내가 해줄 말/내가 들을 말 , ;학습하기수정/내가 해줄 말/내가 들을 말 , ;학습하기제거/내가 해줄 말 " , inline=False)
-        embed.set_footer(text="숭실대학교 키메라 모코코봇 ")
+        embed.set_footer(text="숭실대학교 키메라 ")
         await message.channel.send(embed=embed)
 
 ###################################################################################################
@@ -107,9 +107,12 @@ async def on_message(message): # 채팅명령어
 
     if message.content == ";이슈":
         issue = best_notice()
+        embed = discord.Embed(title= "실시간 공지 검색어 순위")
         for i in range(10):
-            await message.channel.send(issue[i].a.get_text() + issue[i].a["href"])
-                  
+            embed.add_field(name = "{}. {}".format(i+1 , issue[i].a.get_text()) , value = issue[i].a["href"] )
+            embed.set_image("")
+        await message.channel.send(embed = embed)
+
 ########################################################################################
     #리스트 확인 
     if message.content == ";리스트확인":
@@ -124,6 +127,23 @@ async def on_message(message): # 채팅명령어
     #얘도 그냥 테스트용 
     if message.content == "ping":
         await message.channel.send("pong")
+    
+    if message.content == ";학교":
+        await message.channel.send("https://ssu.ac.kr/")
+
+    if message.content == ";패치노트":
+        await message.channel.send('''
+            1. 실시간 공지 검색어 스크랩핑 완료 
+        2. ;학교 명령어 , ;이슈(실시간 공지 명령어 추가)
+        3. 앞으로 패치노트에는 변경된 사안이 공지될 것입니다. 
+        4.
+        5.
+        6.
+        7.
+        8.
+        9.
+        10.
+        ''')
 
     #############################################################################################
 
