@@ -50,9 +50,5 @@ for a in notilist:
         t_list.append(title)
         l_list.append(link)
 
-# 필터적용 적용된거는 DB에 넣을거임 dic에 안넣음 보류 
-for i in len(notilist):
-
-
 
             
